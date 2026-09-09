@@ -1,0 +1,112 @@
+﻿name: Golden Hawks Helmet Shuffle CI & Showcase Deployment
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  validate-and-test:
+    name: Syntax & Package Verification
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Linting & Verification Tools
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8 tomli
+
+      - name: Python Syntax & AST Compilation Check
+        run: |
+          python -m compileall -q blender_addon/ scripts/ golden_hawks_shuffle.py
+          echo "All Python source files compiled with 0 syntax errors."
+
+      - name: Validate Blender Extension Manifest
+        run: |
+          python -c "
+          import tomli
+          with open('blender_addon/blender_manifest.toml', 'rb') as f:
+              data = tomli.load(f)
+          assert data['schema_version'] == '1.0.0', 'Invalid schema_version'
+          assert data['id'] == 'golden_hawks_shuffle', 'Invalid id'
+          assert data['version'] == '3.5.0', 'Invalid version'
+          print('Manifest validated successfully:', data['name'], 'v' + data['version'])
+          "
+
+      - name: Verify Release ZIP Integrity
+        run: |
+          python -c "
+          import zipfile
+          with zipfile.ZipFile('releases/laurier_golden_hawks_shuffle_v3.5.0.zip') as z:
+              files = z.namelist()
+              assert 'golden_hawks_shuffle/__init__.py' in files, 'Missing __init__.py'
+              assert 'golden_hawks_shuffle/blender_manifest.toml' in files, 'Missing blender_manifest.toml'
+              print('Release ZIP integrity verified:', len(files), 'files present.')
+          "
+
+      - name: Verify Sample Runtime Track JSON & Benchmarks
+        run: |
+          python -c "
+          import json
+          with open('assets/wolfpack_anim_tracks.json', 'r') as f:
+              tracks = json.load(f)
+              assert 'actors' in tracks, 'Missing actors in tracks'
+              assert 'metadata' in tracks, 'Missing metadata'
+          with open('assets/wolfpack_telemetry_benchmark.json', 'r') as f:
+              bench = json.load(f)
+              assert 'bake_time_ms' in bench, 'Missing bake_time_ms'
+          print('Runtime telemetry assets verified.')
+          "
+
+  deploy-showcase:
+    name: Deploy Live Interactive Showcase to GitHub Pages
+    needs: validate-and-test
+    if: github.ref == 'refs/heads/main'
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v4
+
+      - name: Prepare Showcase Directory
+        run: |
+          mkdir -p _site/assets
+          mkdir -p _site/releases
+          cp index.html _site/
+          cp assets/* _site/assets/ 2>/dev/null || true
+          cp releases/* _site/releases/ 2>/dev/null || true
+          touch _site/.nojekyll
+
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

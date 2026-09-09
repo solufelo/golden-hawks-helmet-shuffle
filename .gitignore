@@ -1,0 +1,31 @@
+﻿# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Blender temporary & autosave files
+*.blend1
+*.blend2
+*.blend@
+*.bmesh
+
+# Output renders & local batch artifacts (samples are safely preserved in assets/)
+/render_output/
+*.mov
+*.mp4
+*.mkv
+/wolfpack_anim_tracks.json
+/wolfpack_telemetry_benchmark.json
+/wolfpack_shuffle_cues.json
+/wolfpack_shuffle_cues.csv
+
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE & Editor artifacts
+.idea/
+.vscode/
+*.swp
+*.swo
