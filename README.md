@@ -1,6 +1,7 @@
-﻿# 🦅 Golden Hawks Helmet Shuffle (v3.5.0)
+# ?? Golden Hawks Helmet Shuffle (v3.5.0)
 ### High-Performance Collegiate Stadium Videoboard Motion Engine & AAA Game Studio Tooling Pipeline
 
+[![CI](https://github.com/solufelo/golden-hawks-helmet-shuffle/actions/workflows/blender-ci.yml/badge.svg)](https://github.com/solufelo/golden-hawks-helmet-shuffle/actions)
 [![Blender](https://img.shields.io/badge/Blender-4.2%20%7C%205.2%20LTS-E87D0D?logo=blender&logoColor=white)](https://www.blender.org/)
 [![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![Broadcast](https://img.shields.io/badge/Broadcast-1080p60%20ProRes%20422%20HQ-black)](https://support.apple.com/en-us/HT202410)
@@ -16,13 +17,13 @@
 
 ---
 
-## 🌐 Live Interactive Web Showcase
+## ?? Live Interactive Web Showcase
 Experience the live interactive N-panel simulator, color token palette explorer, and real-time telemetry benchmark dials in your browser:  
-👉 **[Launch Live Web Showcase](https://solufelo.github.io/golden-hawks-helmet-shuffle/)**
+?? **[Launch Live Web Showcase](https://solufelo.github.io/golden-hawks-helmet-shuffle/)**
 
 ---
 
-## ⚡ Overview & Executive Summary
+## ? Overview & Executive Summary
 
 **Golden Hawks Helmet Shuffle** is a production-grade 3D motion graphics engine and tools suite for **Blender 4.x / 5.2+ LTS**, engineered to solve two high-stakes challenges simultaneously:
 
@@ -34,13 +35,13 @@ Experience the live interactive N-panel simulator, color token palette explorer,
 
 ---
 
-## 🎯 Key Engineering Innovations
+## ?? Key Engineering Innovations
 
 ```mermaid
 graph TD
     A[Game-Day Trigger / Operator] -->|1-Click Setup| B(wolfpack.one_click_gameday_setup)
     B --> C[Venue Staging & Volumetric Atmosphere]
-    B --> D[Broadcast Sandwich Framing & 61.74° Normal Alignment]
+    B --> D[Broadcast Sandwich Framing & 61.74� Normal Alignment]
     B --> E[Kinematic Shuffle Bake & Telemetry Profiler]
     E --> F[3D Motion Trajectory Viewport Arcs]
     E --> G[Runtime JSON Track Exporter: Quaternions + Velocities]
@@ -58,7 +59,7 @@ The **Broadcast Sandwich Layout** implements network sports layout standards (ES
 - **Bottom Sponsor / Tag (`-Y = -0.58`)**: `"PRESENTED BY WILFRID LAURIER ATHLETICS"` comfortably seated in the lower third.
 - **Air Gap Guarantee**: Over **0.26 screen height units** of clean clearance between every line in both perspective and orthographic camera views.
 
-### 2. Dynamic Camera-Normal Pitch Alignment (`61.74°`)
+### 2. Dynamic Camera-Normal Pitch Alignment (`61.74�`)
 Rather than leaving 3D text static in world coordinates, the addon dynamically computes the trigonometric angle of incidence between the active camera and text center:
 $$\theta = \arctan\left(\frac{Z_{\text{camera}} - Z_{\text{text}}}{Y_{\text{text}} - Y_{\text{camera}}}\right) = 61.74^\circ$$
 The text geometry is pitched to match the camera's normal plane, rendering headlines completely flat and perpendicular to the camera lens with **zero keystoning or perspective distortion**.
@@ -92,42 +93,42 @@ Calibrated to prevent **Automatic Power Limiting (APL)** voltage drops on giant 
 
 ---
 
-## 📦 Repository Structure
+## ?? Repository Structure
 
 ```
 golden-hawks-helmet-shuffle/
-├── .github/
-│   └── workflows/
-│       └── blender-ci.yml                 # Automated test validation & Pages deployment
-├── assets/
-│   ├── golden_hawks_hero.jpg              # 16:9 studio 8K hero render
-│   ├── sample_cue_sheet.csv               # SMPTE videoboard control switcher cue sheet
-│   ├── sample_cue_sheet.json              # SMPTE timecode cue sheet (JSON)
-│   ├── wolfpack_anim_tracks.json          # Exported runtime quaternion track sample
-│   └── wolfpack_telemetry_benchmark.json  # Profiler telemetry sample report
-├── blender_addon/
-│   ├── __init__.py                        # Addon source (v3.5.0, dual-brand registered)
-│   └── blender_manifest.toml              # Blender 4.2+ extension manifest
-├── docs/
-│   ├── BRANDING_AND_UI_DESIGN_SYSTEM.md   # LED diode physics, typography, Fitts's law
-│   ├── CHANGELOG.md                       # Full version history (v1.0 -> v3.5.0)
-│   ├── INSTALLATION.md                    # Comprehensive setup guide
-│   ├── PRODUCTION_SET_DESIGN_BLUEPRINT.md # Stadium scale, lighting & shaders
-│   └── ROCKSTAR_GAMES_PORTFOLIO_BLUEPRINT.md # LinkedIn 20s script & interview points
-├── releases/
-│   └── laurier_golden_hawks_shuffle_v3.5.0.zip # 1-click installable release ZIP
-├── scripts/
-│   ├── pipeline_batch_runner.py           # Headless CLI studio batch runner
-│   └── test_addon.py                      # 9-stage automated verification suite
-├── golden_hawks_shuffle.py                # Standalone single-file distribution
-├── index.html                             # Interactive Web Showcase Deck (GitHub Pages)
-├── LICENSE                                # MIT License
-└── README.md                              # This specification
++-- .github/
+�   +-- workflows/
+�       +-- blender-ci.yml                 # Automated test validation & Pages deployment
++-- assets/
+�   +-- golden_hawks_hero.jpg              # 16:9 studio 8K hero render
+�   +-- sample_cue_sheet.csv               # SMPTE videoboard control switcher cue sheet
+�   +-- sample_cue_sheet.json              # SMPTE timecode cue sheet (JSON)
+�   +-- wolfpack_anim_tracks.json          # Exported runtime quaternion track sample
+�   +-- wolfpack_telemetry_benchmark.json  # Profiler telemetry sample report
++-- blender_addon/
+�   +-- __init__.py                        # Addon source (v3.5.0, dual-brand registered)
+�   +-- blender_manifest.toml              # Blender 4.2+ extension manifest
++-- docs/
+�   +-- BRANDING_AND_UI_DESIGN_SYSTEM.md   # LED diode physics, typography, Fitts's law
+�   +-- CHANGELOG.md                       # Full version history (v1.0 -> v3.5.0)
+�   +-- INSTALLATION.md                    # Comprehensive setup guide
+�   +-- PRODUCTION_SET_DESIGN_BLUEPRINT.md # Stadium scale, lighting & shaders
+�   +-- ROCKSTAR_GAMES_PORTFOLIO_BLUEPRINT.md # LinkedIn 20s script & interview points
++-- releases/
+�   +-- laurier_golden_hawks_shuffle_v3.5.0.zip # 1-click installable release ZIP
++-- scripts/
+�   +-- pipeline_batch_runner.py           # Headless CLI studio batch runner
+�   +-- test_addon.py                      # 9-stage automated verification suite
++-- golden_hawks_shuffle.py                # Standalone single-file distribution
++-- index.html                             # Interactive Web Showcase Deck (GitHub Pages)
++-- LICENSE                                # MIT License
++-- README.md                              # This specification
 ```
 
 ---
 
-## 🚀 Quickstart & Installation
+## ?? Quickstart & Installation
 
 ### Option 1: Blender GUI (Preferences)
 1. Download **[`releases/laurier_golden_hawks_shuffle_v3.5.0.zip`](releases/laurier_golden_hawks_shuffle_v3.5.0.zip)**.
@@ -141,7 +142,7 @@ Simply open `golden_hawks_shuffle.py` inside Blender's **Scripting** tab and cli
 
 ---
 
-## 🧪 Automated Headless Test Suite
+## ?? Automated Headless Test Suite
 
 Verify all 9 core subsystems headlessly via the Blender CLI:
 
@@ -184,7 +185,7 @@ Verify all 9 core subsystems headlessly via the Blender CLI:
 
 ---
 
-## 💻 Headless Studio Pipeline Batch Runner
+## ?? Headless Studio Pipeline Batch Runner
 
 Automate end-to-end batch animation, lighting configuration, and track export without launching the GUI:
 
@@ -210,7 +211,7 @@ Automate end-to-end batch animation, lighting configuration, and track export wi
 
 ---
 
-## 📊 Runtime Track Schema (Rockstar RAGE / Unreal Engine 5)
+## ?? Runtime Track Schema (Rockstar RAGE / Unreal Engine 5)
 
 Sample output from `assets/wolfpack_anim_tracks.json`:
 
@@ -245,7 +246,7 @@ Sample output from `assets/wolfpack_anim_tracks.json`:
 
 ---
 
-## 🎬 SMPTE Broadcast Cue Sheet Format
+## ?? SMPTE Broadcast Cue Sheet Format
 
 Sample output from `assets/sample_cue_sheet.csv` for Ross XPression / Daktronics Show Control:
 
@@ -262,7 +263,7 @@ Frame,SMPTE_Timecode,Event_Type,Description
 
 ---
 
-## 👨‍💻 Author & Engineering Credits
+## ????? Author & Engineering Credits
 
 - **Developer**: **Solomon Olufelo** ([@solufelo](https://github.com/solufelo))
 - **Role**: Tools & Pipeline Developer / Technical Artist
@@ -271,6 +272,6 @@ Frame,SMPTE_Timecode,Event_Type,Description
 
 ---
 
-## 📄 License
+## ?? License
 
-This project is licensed under the [MIT License](LICENSE) — free for collegiate, commercial, and personal use.
+This project is licensed under the [MIT License](LICENSE) � free for collegiate, commercial, and personal use.
