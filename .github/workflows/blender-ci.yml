@@ -43,6 +43,8 @@ jobs:
           assert data['schema_version'] == '1.0.0', 'Invalid schema_version'
           assert data['id'] == 'golden_hawks_shuffle', 'Invalid id'
           assert data['version'] == '3.5.0', 'Invalid version'
+          assert 'license' in data, 'Missing license'
+          assert len(data['tagline']) <= 64, f"Tagline exceeds 64 chars ({len(data['tagline'])})"
           print('Manifest validated successfully:', data['name'], 'v' + data['version'])
           "
 
