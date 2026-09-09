@@ -61,11 +61,11 @@ jobs:
         run: |
           python -c "
           import json
-          with open('assets/wolfpack_anim_tracks.json', 'r') as f:
+          with open('assets/golden_hawks_anim_tracks.json', 'r') as f:
               tracks = json.load(f)
               assert 'actors' in tracks, 'Missing actors in tracks'
               assert 'metadata' in tracks, 'Missing metadata'
-          with open('assets/wolfpack_telemetry_benchmark.json', 'r') as f:
+          with open('assets/golden_hawks_telemetry_benchmark.json', 'r') as f:
               bench = json.load(f)
               assert 'system_metrics' in bench, 'Missing system_metrics'
               assert 'bake_duration_ms' in bench['system_metrics'], 'Missing bake_duration_ms'

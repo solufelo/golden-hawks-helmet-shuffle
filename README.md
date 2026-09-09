@@ -39,9 +39,9 @@ Experience the live interactive N-panel simulator, color token palette explorer,
 
 ```mermaid
 graph TD
-    A[Game-Day Trigger / Operator] -->|1-Click Setup| B(wolfpack.one_click_gameday_setup)
+    A[Game-Day Trigger / Operator] -->|1-Click Setup| B(golden_hawks.one_click_gameday_setup)
     B --> C[Venue Staging & Volumetric Atmosphere]
-    B --> D[Broadcast Sandwich Framing & 61.74° Normal Alignment]
+    B --> D[Broadcast Sandwich Framing & 61.74Â° Normal Alignment]
     B --> E[Kinematic Shuffle Bake & Telemetry Profiler]
     E --> F[3D Motion Trajectory Viewport Arcs]
     E --> G[Runtime JSON Track Exporter: Quaternions + Velocities]
@@ -59,12 +59,12 @@ The **Broadcast Sandwich Layout** implements network sports layout standards (ES
 - **Bottom Sponsor / Tag (`-Y = -0.58`)**: `"PRESENTED BY WILFRID LAURIER ATHLETICS"` comfortably seated in the lower third.
 - **Air Gap Guarantee**: Over **0.26 screen height units** of clean clearance between every line in both perspective and orthographic camera views.
 
-### 2. Dynamic Camera-Normal Pitch Alignment (`61.74°`)
+### 2. Dynamic Camera-Normal Pitch Alignment (`61.74Â°`)
 Rather than leaving 3D text static in world coordinates, the addon dynamically computes the trigonometric angle of incidence between the active camera and text center:
 $$\theta = \arctan\left(\frac{Z_{\text{camera}} - Z_{\text{text}}}{Y_{\text{text}} - Y_{\text{camera}}}\right) = 61.74^\circ$$
 The text geometry is pitched to match the camera's normal plane, rendering headlines completely flat and perpendicular to the camera lens with **zero keystoning or perspective distortion**.
 
-### 3. AAA Game Engine Animation Track Exporter (`wolfpack.export_game_engine_anim`)
+### 3. AAA Game Engine Animation Track Exporter (`golden_hawks.export_game_engine_anim`)
 Serializes deterministic motion data directly from Blender into runtime game engine formats:
 - **Unit Quaternions (`[w, x, y, z]`)**: Gimbal-lock-free orientation per actor per frame.
 - **Velocity Vectors (`[vx, vy, vz]`) & Linear Speed (`m/s`)**: Runtime physics simulation ready.
@@ -98,28 +98,28 @@ Calibrated to prevent **Automatic Power Limiting (APL)** voltage drops on giant 
 ```
 golden-hawks-helmet-shuffle/
 +-- .github/
-¦   +-- workflows/
-¦       +-- blender-ci.yml                 # Automated test validation & Pages deployment
+Â¦   +-- workflows/
+Â¦       +-- blender-ci.yml                 # Automated test validation & Pages deployment
 +-- assets/
-¦   +-- golden_hawks_hero.jpg              # 16:9 studio 8K hero render
-¦   +-- sample_cue_sheet.csv               # SMPTE videoboard control switcher cue sheet
-¦   +-- sample_cue_sheet.json              # SMPTE timecode cue sheet (JSON)
-¦   +-- wolfpack_anim_tracks.json          # Exported runtime quaternion track sample
-¦   +-- wolfpack_telemetry_benchmark.json  # Profiler telemetry sample report
+Â¦   +-- golden_hawks_hero.jpg              # 16:9 studio 8K hero render
+Â¦   +-- sample_cue_sheet.csv               # SMPTE videoboard control switcher cue sheet
+Â¦   +-- sample_cue_sheet.json              # SMPTE timecode cue sheet (JSON)
+Â¦   +-- golden_hawks_anim_tracks.json          # Exported runtime quaternion track sample
+Â¦   +-- golden_hawks_telemetry_benchmark.json  # Profiler telemetry sample report
 +-- blender_addon/
-¦   +-- __init__.py                        # Addon source (v3.5.0, dual-brand registered)
-¦   +-- blender_manifest.toml              # Blender 4.2+ extension manifest
+Â¦   +-- __init__.py                        # Addon source (v3.5.0, dual-brand registered)
+Â¦   +-- blender_manifest.toml              # Blender 4.2+ extension manifest
 +-- docs/
-¦   +-- BRANDING_AND_UI_DESIGN_SYSTEM.md   # LED diode physics, typography, Fitts's law
-¦   +-- CHANGELOG.md                       # Full version history (v1.0 -> v3.5.0)
-¦   +-- INSTALLATION.md                    # Comprehensive setup guide
-¦   +-- PRODUCTION_SET_DESIGN_BLUEPRINT.md # Stadium scale, lighting & shaders
-¦   +-- ROCKSTAR_GAMES_PORTFOLIO_BLUEPRINT.md # LinkedIn 20s script & interview points
+Â¦   +-- BRANDING_AND_UI_DESIGN_SYSTEM.md   # LED diode physics, typography, Fitts's law
+Â¦   +-- CHANGELOG.md                       # Full version history (v1.0 -> v3.5.0)
+Â¦   +-- INSTALLATION.md                    # Comprehensive setup guide
+Â¦   +-- PRODUCTION_SET_DESIGN_BLUEPRINT.md # Stadium scale, lighting & shaders
+Â¦   +-- ROCKSTAR_GAMES_PORTFOLIO_BLUEPRINT.md # LinkedIn 20s script & interview points
 +-- releases/
-¦   +-- laurier_golden_hawks_shuffle_v3.5.0.zip # 1-click installable release ZIP
+Â¦   +-- laurier_golden_hawks_shuffle_v3.5.0.zip # 1-click installable release ZIP
 +-- scripts/
-¦   +-- pipeline_batch_runner.py           # Headless CLI studio batch runner
-¦   +-- test_addon.py                      # 9-stage automated verification suite
+Â¦   +-- pipeline_batch_runner.py           # Headless CLI studio batch runner
+Â¦   +-- test_addon.py                      # 9-stage automated verification suite
 +-- golden_hawks_shuffle.py                # Standalone single-file distribution
 +-- index.html                             # Interactive Web Showcase Deck (GitHub Pages)
 +-- LICENSE                                # MIT License
@@ -158,25 +158,25 @@ Verify all 9 core subsystems headlessly via the Blender CLI:
 ===========================================================================
 [TEST 1] Addon Registration & Manifest Verification...
   -> PASS: Module 'golden_hawks_shuffle' successfully enabled from preferences.
-  -> PASS: Verified scene.golden_hawks_shuffle / scene.wolfpack_shuffle bindings.
+  -> PASS: Verified scene.golden_hawks_shuffle / scene.golden_hawks_shuffle bindings.
 [TEST 2] Verifying Studio Properties & Stage Attributes...
   -> PASS: All 9 studio telemetry properties verified.
-[TEST 3] Running wolfpack.setup_demo (Turf & Stand-ins)...
+[TEST 3] Running golden_hawks.setup_demo (Turf & Stand-ins)...
   -> PASS: Stadium turf pitch and 3 shufflers spawned successfully.
-[TEST 4] Running wolfpack.generate_shuffle with Real-Time Telemetry Profiler...
+[TEST 4] Running golden_hawks.generate_shuffle with Real-Time Telemetry Profiler...
   -> Bake Duration: 75.29 ms
   -> Keyframe Throughput: 41241 keys/sec (3105 keys total)
   -> Memory Overhead: +0.156 MB (0 Leaks)
   -> PASS: Real-time telemetry profiling verified.
 [TEST 5] Verifying 3D Motion Trajectory Arcs in Viewport...
   -> PASS: 3D Motion Trajectory Arcs verified (3 splines, 3 materials).
-[TEST 6] Testing wolfpack.export_game_engine_anim...
+[TEST 6] Testing golden_hawks.export_game_engine_anim...
   -> PASS: AAA Game Engine Track verified (4 actors, 305 frames).
-[TEST 7] Testing wolfpack.export_telemetry...
+[TEST 7] Testing golden_hawks.export_telemetry...
   -> PASS: Benchmark report verified.
-[TEST 8] Testing wolfpack.export_cue_sheet...
+[TEST 8] Testing golden_hawks.export_cue_sheet...
   -> PASS: SMPTE Cue Sheet export verified.
-[TEST 9] Testing wolfpack.one_click_gameday_setup (Full Control Room Pipeline)...
+[TEST 9] Testing golden_hawks.one_click_gameday_setup (Full Control Room Pipeline)...
   -> PASS: 1-Click Game-Day Show operator executed cleanly.
 ===========================================================================
   ALL 9 TESTS PASSED (100% SUCCESS) - PRODUCTION & STUDIO READY
@@ -213,7 +213,7 @@ Automate end-to-end batch animation, lighting configuration, and track export wi
 
 ## ?? Runtime Track Schema (Rockstar RAGE / Unreal Engine 5)
 
-Sample output from `assets/wolfpack_anim_tracks.json`:
+Sample output from `assets/golden_hawks_anim_tracks.json`:
 
 ```json
 {
@@ -274,4 +274,4 @@ Frame,SMPTE_Timecode,Event_Type,Description
 
 ## ?? License
 
-This project is licensed under the [MIT License](LICENSE) — free for collegiate, commercial, and personal use.
+This project is licensed under the [MIT License](LICENSE) Â— free for collegiate, commercial, and personal use.
