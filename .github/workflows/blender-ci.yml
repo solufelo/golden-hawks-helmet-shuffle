@@ -1,4 +1,4 @@
-﻿name: Golden Hawks Helmet Shuffle CI & Showcase Deployment
+name: Golden Hawks Helmet Shuffle CI & Showcase Deployment
 
 on:
   push:
@@ -67,7 +67,8 @@ jobs:
               assert 'metadata' in tracks, 'Missing metadata'
           with open('assets/wolfpack_telemetry_benchmark.json', 'r') as f:
               bench = json.load(f)
-              assert 'bake_time_ms' in bench, 'Missing bake_time_ms'
+              assert 'system_metrics' in bench, 'Missing system_metrics'
+              assert 'bake_duration_ms' in bench['system_metrics'], 'Missing bake_duration_ms'
           print('Runtime telemetry assets verified.')
           "
 
