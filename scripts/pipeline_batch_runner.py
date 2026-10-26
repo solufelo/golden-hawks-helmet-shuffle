@@ -2,7 +2,7 @@
 Laurier Golden Hawks - Headless Studio Pipeline Batch Runner
 ===================================================================================
 Author: Solomon Olufelo (Tools & Pipeline Developer)
-Version: 3.5.3
+Version: 3.5.4
 
 Usage:
   blender.exe -b --python pipeline_batch_runner.py -- [OPTIONS]
@@ -48,7 +48,7 @@ def run_pipeline(args):
     print("=" * 70)
     print("  GOLDEN HAWKS HELMET SHUFFLE STUDIO PIPELINE RUNNER")
     print("  Wilfrid Laurier Athletics Production")
-    print("  Version: 3.5.3 | Headless Batch Automation")
+    print("  Version: 3.5.4 | Headless Batch Automation")
     print("=" * 70)
 
     # 1. Enable Addon if needed

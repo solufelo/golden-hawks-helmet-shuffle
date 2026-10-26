@@ -2,6 +2,12 @@
 
 All notable changes to the Laurier Football Shell Game Blender addon will be documented in this file.
 
+## [3.5.4] - 2026-10-26
+
+### Changed
+- The manifest's licence now matches the LICENSE file: MIT (it said GPL-2.0-or-later).
+- Release zip rebuilt as `laurier_golden_hawks_shuffle_v3.5.4.zip`, same layout as before.
+
 ## [3.5.3] - 2026-10-26
 
 ### Fixed

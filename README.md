@@ -40,7 +40,7 @@ The add-on times its own bakes. The 305-frame benchmark scene (30 fps) bakes in 
 
 Needs Blender 4.0 or newer.
 
-1. Download [`releases/laurier_golden_hawks_shuffle_v3.5.3.zip`](releases/laurier_golden_hawks_shuffle_v3.5.3.zip). Keep it zipped.
+1. Download [`releases/laurier_golden_hawks_shuffle_v3.5.4.zip`](releases/laurier_golden_hawks_shuffle_v3.5.4.zip). Keep it zipped.
 2. In Blender, open **Edit › Preferences › Add-ons**.
 3. Open the menu at the top right, choose **Install from Disk** and pick the zip. On Blender 4.0 and 4.1, use the **Install** button.
 4. Tick **Golden Hawks Helmet Shuffle** if it isn't already on.
@@ -79,4 +79,4 @@ Built by Solomon Olufelo for Laurier Athletics football. More in the [Laurier Ga
 
 ## License
 
-See [LICENSE](LICENSE).
+MIT. See [LICENSE](LICENSE).
