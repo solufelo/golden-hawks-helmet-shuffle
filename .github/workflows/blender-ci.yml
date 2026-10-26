@@ -42,7 +42,7 @@ jobs:
               data = tomli.load(f)
           assert data['schema_version'] == '1.0.0', 'Invalid schema_version'
           assert data['id'] == 'golden_hawks_shuffle', 'Invalid id'
-          assert data['version'] == '3.5.2', 'Invalid version'
+          assert data['version'] == '3.5.3', 'Invalid version'
           assert 'license' in data, 'Missing license'
           tagline = data['tagline']
           assert len(tagline) <= 64, f'Tagline exceeds 64 chars ({len(tagline)})'
@@ -53,7 +53,7 @@ jobs:
         run: |
           python -c "
           import zipfile
-          with zipfile.ZipFile('releases/laurier_golden_hawks_shuffle_v3.5.2.zip') as z:
+          with zipfile.ZipFile('releases/laurier_golden_hawks_shuffle_v3.5.3.zip') as z:
               files = z.namelist()
               assert 'golden_hawks_shuffle/__init__.py' in files, 'Missing __init__.py'
               assert 'golden_hawks_shuffle/blender_manifest.toml' in files, 'Missing blender_manifest.toml'

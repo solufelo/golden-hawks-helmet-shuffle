@@ -2,6 +2,12 @@
 
 All notable changes to the Laurier Football Shell Game Blender addon will be documented in this file.
 
+## [3.5.3] - 2026-10-26
+
+### Fixed
+- The panel's "60 FPS" and "0 LEAKS" badges weren't true: the frame rate defaults to 30, and nothing tests for leaks. The badges now show the scene's real frame rate and the last measured bake time. The profiler's "0 Leaks | Deterministic Execution" line now says the key and speed figures are estimates.
+- Release zip rebuilt as `laurier_golden_hawks_shuffle_v3.5.3.zip`, same layout as before.
+
 ## [3.5.2] - 2026-10-26
 
 ### Changed

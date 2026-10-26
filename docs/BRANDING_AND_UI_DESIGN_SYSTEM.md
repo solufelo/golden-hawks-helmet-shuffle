@@ -58,7 +58,7 @@ The Blender interface in **v3.5.0** applies core human factors engineering and F
 - **Title Block**: Prominent `GOLDEN HAWKS ⚡ HELMET SHUFFLE` title with live versioning (`v3.5.0`).
 - **Sidebar Tab**: Clean, recognizable `Golden Hawks` category tab in the View3D sidebar.
 - **Status Pill Bar**: Four green-lit indicator pills:
-  `[● 60 FPS]` `[● PRORES 422]` `[● ENGINE TRACKS]` `[● 0 LEAKS]`
+  `[● <scene fps> FPS]` `[● PRORES 422]` `[● ENGINE TRACKS]` `[● BAKE <last bake> MS]`
   Provides immediate visual confirmation of operational health before any operator is clicked.
 
 ### 2. The Hero Action Deck (Fitts's Law Optimization)

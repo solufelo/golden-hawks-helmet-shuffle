@@ -1,7 +1,7 @@
 bl_info = {
     "name": "Golden Hawks Helmet Shuffle",
     "author": "Solomon Olufelo / Laurier Athletics",
-    "version": (3, 5, 2),
+    "version": (3, 5, 3),
     "blender": (4, 0, 0),
     "location": "View3D > Sidebar > Golden Hawks",
     "description": "Laurier Golden Hawks Game-Day Helmet Shuffle (Interactive Videoboard Shell Game, Broadcast Sandwich Framing, Volumetric Atmosphere, ProRes 422 HQ)",
@@ -1272,7 +1272,7 @@ def export_broadcast_cue_sheet(plan, props, winning_item_id: int, total_frames: 
     # Write JSON
     json_path = filepath_base + ".json"
     data = {
-        "suite": "Golden Hawks Helmet Shuffle v3.5.2",
+        "suite": "Golden Hawks Helmet Shuffle v3.5.3",
         "author": "Solomon Olufelo / Wilfrid Laurier Athletics",
         "client": "Wilfrid Laurier Golden Hawks",
         "fps": fps,
@@ -3531,7 +3531,7 @@ def export_game_engine_animation_tracks(scene, props):
     
     # Track dictionary
     track_data = {
-        "generator": "Golden Hawks Studio Tools v3.5.2",
+        "generator": "Golden Hawks Studio Tools v3.5.3",
         "target_engine": props.game_engine_target,
         "metadata": {
             "fps": fps,
@@ -3699,7 +3699,7 @@ class GOLDEN_HAWKS_OT_export_telemetry(bpy.types.Operator):
         
         benchmark_data = {
             "studio": "Golden Hawks Athletics / Studio Tools",
-            "version": "3.5.2",
+            "version": "3.5.3",
             "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
             "system_metrics": {
                 "bake_duration_ms": round(props.last_bake_ms, 2),
@@ -3916,15 +3916,15 @@ class GOLDEN_HAWKS_PT_sidebar_panel(bpy.types.Panel):
         row_title.label(text="GOLDEN HAWKS ⚡ HELMET SHUFFLE", icon='SOLO_ON')
         
         row_sub = col_b.row(align=True)
-        row_sub.label(text="v3.5.2 • Laurier Athletics Game-Day Interactive", icon='PREFERENCES')
+        row_sub.label(text="v3.5.3 • Laurier Athletics Game-Day Interactive", icon='PREFERENCES')
         
         # Status Pill Bar
         row_pills = box_brand.row(align=True)
         row_pills.alignment = 'EXPAND'
-        row_pills.label(text="60 FPS", icon='RADIOBUT_ON')
+        row_pills.label(text=f"{context.scene.render.fps} FPS", icon='RADIOBUT_ON')  # the scene's real render rate
         row_pills.label(text="PRORES 422", icon='RADIOBUT_ON')
         row_pills.label(text="ENGINE TRACKS", icon='RADIOBUT_ON')
-        row_pills.label(text="0 LEAKS", icon='CHECKMARK')
+        row_pills.label(text=f"BAKE {props.last_bake_ms:.0f} MS" if props.last_bake_ms else "NOT BAKED", icon='TIME')
 
         # ====================================================================
         # HERO ACTION DECK (1-Click Wizard & Master Bake)
@@ -4142,7 +4142,7 @@ class GOLDEN_HAWKS_PT_sidebar_panel(bpy.types.Panel):
             row_hud2.label(text=f"🧠 Peak: +{props.last_memory_mb:.2f} MB", icon='DISK_DRIVE')
             
             row_status = box_prof.row(align=True)
-            row_status.label(text="🛡️ Status: 0 Leaks | Deterministic Execution", icon='CHECKMARK')
+            row_status.label(text="Keys and speed are estimates", icon='INFO')
             box_prof.operator("golden_hawks.export_telemetry", text="Export Benchmark Report (.json)", icon='EXPORT')
 
             # 3D Motion Trajectory Arcs
