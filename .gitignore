@@ -13,6 +13,7 @@ __pycache__/
 /render_output/
 *.mov
 *.mp4
+!assets/web/*.mp4
 *.mkv
 /wolfpack_anim_tracks.json
 /wolfpack_telemetry_benchmark.json

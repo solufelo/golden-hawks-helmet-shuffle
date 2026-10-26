@@ -1,931 +1,270 @@
-﻿<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Golden Hawks Helmet Shuffle (v3.5.0) | AAA Blender Motion Engine & Broadcast Pipeline</title>
-  <meta name="description" content="Collegiate stadium videoboard interactive game and AAA technical artist tooling suite for Blender 4.x / 5.2+ LTS. Built for Wilfrid Laurier University Athletics & Rockstar Games spec." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg-dark: #0a0b0e;
-      --card-bg: #12141a;
-      --card-border: #232733;
-      --card-hover: #2b3040;
-      --gold-primary: #FDB913;
-      --gold-glow: rgba(253, 185, 19, 0.35);
-      --purple-dark: #20003B;
-      --purple-accent: #7928CA;
-      --cyan-volt: #00F5D4;
-      --cyan-glow: rgba(0, 245, 212, 0.35);
-      --emerald-ready: #10B981;
-      --text-main: #F3F4F6;
-      --text-muted: #9CA3AF;
-      --text-dim: #6B7280;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      background-color: var(--bg-dark);
-      color: var(--text-main);
-      font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
-      line-height: 1.6;
-      overflow-x: hidden;
-      background-image: 
-        radial-gradient(circle at 15% 10%, rgba(253, 185, 19, 0.08) 0%, transparent 40%),
-        radial-gradient(circle at 85% 60%, rgba(0, 245, 212, 0.06) 0%, transparent 45%),
-        radial-gradient(circle at 50% 90%, rgba(121, 40, 202, 0.08) 0%, transparent 50%);
-      background-attachment: fixed;
-    }
-
-    /* Container */
-    .container {
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 24px 20px 80px 20px;
-    }
-
-    /* Navigation */
-    header.navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 18px 24px;
-      background: rgba(18, 20, 26, 0.75);
-      backdrop-filter: blur(16px);
-      border: 1px solid var(--card-border);
-      border-radius: 18px;
-      margin-bottom: 32px;
-      position: sticky;
-      top: 16px;
-      z-index: 100;
-    }
-
-    .nav-brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .brand-badge {
-      background: linear-gradient(135deg, var(--gold-primary), #d99904);
-      color: #000;
-      font-weight: 900;
-      font-size: 13px;
-      padding: 4px 8px;
-      border-radius: 8px;
-      letter-spacing: 0.5px;
-    }
-
-    .brand-title {
-      font-weight: 800;
-      font-size: 18px;
-      letter-spacing: -0.5px;
-    }
-
-    .brand-title span {
-      color: var(--gold-primary);
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .nav-link {
-      color: var(--text-muted);
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-
-    .nav-link:hover {
-      color: var(--text-main);
-    }
-
-    .btn-download {
-      background: linear-gradient(135deg, var(--gold-primary), #e5a407);
-      color: #000;
-      font-weight: 800;
-      font-size: 13px;
-      padding: 8px 16px;
-      border-radius: 10px;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 4px 14px var(--gold-glow);
-    }
-
-    .btn-download:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(253, 185, 19, 0.5);
-    }
-
-    /* Hero Banner */
-    .hero-banner {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 24px;
-      padding: 40px;
-      position: relative;
-      overflow: hidden;
-      margin-bottom: 32px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-    }
-
-    .hero-banner::after {
-      content: '';
-      position: absolute;
-      top: -50%;
-      right: -20%;
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, var(--gold-glow) 0%, transparent 70%);
-      pointer-events: none;
-      opacity: 0.6;
-    }
-
-    .hero-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 16px;
-    }
-
-    .tag {
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-      padding: 4px 10px;
-      border-radius: 6px;
-    }
-
-    .tag-gold {
-      background: rgba(253, 185, 19, 0.15);
-      color: var(--gold-primary);
-      border: 1px solid rgba(253, 185, 19, 0.3);
-    }
-
-    .tag-purple {
-      background: rgba(121, 40, 202, 0.2);
-      color: #b794f4;
-      border: 1px solid rgba(121, 40, 202, 0.4);
-    }
-
-    .tag-cyan {
-      background: rgba(0, 245, 212, 0.15);
-      color: var(--cyan-volt);
-      border: 1px solid rgba(0, 245, 212, 0.3);
-    }
-
-    .hero-title {
-      font-size: 42px;
-      font-weight: 900;
-      line-height: 1.15;
-      margin-bottom: 16px;
-      letter-spacing: -1px;
-    }
-
-    .hero-title span {
-      background: linear-gradient(135deg, var(--gold-primary) 0%, #fff 70%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .hero-subtitle {
-      font-size: 18px;
-      color: var(--text-muted);
-      max-width: 750px;
-      margin-bottom: 28px;
-    }
-
-    /* Live Pills */
-    .pills-ribbon {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      margin-bottom: 24px;
-    }
-
-    .pill {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 14px;
-      border-radius: 8px;
-      background: #0f1117;
-      border: 1px solid var(--card-border);
-    }
-
-    .pill-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-    }
-
-    .dot-pulse {
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.85); }
-    }
-
-    /* Grid Layout */
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      margin-bottom: 32px;
-    }
-
-    @media (max-width: 850px) {
-      .grid-2 {
-        grid-template-columns: 1fr;
-      }
-      .hero-title {
-        font-size: 32px;
-      }
-    }
-
-    /* Card */
-    .card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 20px;
-      padding: 28px;
-      position: relative;
-    }
-
-    .card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 20px;
-    }
-
-    .card-title {
-      font-size: 20px;
-      font-weight: 800;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .card-desc {
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-top: 4px;
-    }
-
-    /* N-Panel Simulator */
-    .npanel-container {
-      background: #0d0f14;
-      border: 1px solid var(--card-border);
-      border-radius: 14px;
-      overflow: hidden;
-    }
-
-    .npanel-topbar {
-      background: #181b24;
-      padding: 10px 16px;
-      border-bottom: 1px solid var(--card-border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-
-    .npanel-tabs {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      background: #11141c;
-      padding: 6px;
-      gap: 4px;
-      border-bottom: 1px solid var(--card-border);
-    }
-
-    .npanel-tab {
-      background: transparent;
-      border: none;
-      color: var(--text-muted);
-      font-family: 'Outfit', sans-serif;
-      font-weight: 600;
-      font-size: 11px;
-      padding: 8px 4px;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: all 0.2s;
-      text-align: center;
-    }
-
-    .npanel-tab:hover {
-      color: var(--text-main);
-      background: rgba(255, 255, 255, 0.05);
-    }
-
-    .npanel-tab.active {
-      background: var(--card-bg);
-      color: var(--gold-primary);
-      box-shadow: 0 2px 6px rgba(0,0,0,0.4);
-    }
-
-    .npanel-body {
-      padding: 16px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      min-height: 220px;
-    }
-
-    .npanel-row {
-      display: flex;
-      justify-content: space-between;
-      padding: 8px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
-    .npanel-row:last-child {
-      border-bottom: none;
-    }
-
-    .npanel-key {
-      color: var(--text-muted);
-    }
-
-    .npanel-val {
-      font-weight: 700;
-      color: var(--text-main);
-    }
-
-    .val-gold { color: var(--gold-primary); }
-    .val-cyan { color: var(--cyan-volt); }
-    .val-green { color: var(--emerald-ready); }
-
-    .btn-action-group {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-top: 14px;
-    }
-
-    .btn-action {
-      padding: 10px 14px;
-      border-radius: 8px;
-      border: 1px solid var(--card-border);
-      background: #181b24;
-      color: var(--text-main);
-      font-family: 'Outfit', sans-serif;
-      font-weight: 700;
-      font-size: 12px;
-      cursor: pointer;
-      transition: all 0.2s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-    }
-
-    .btn-action:hover {
-      background: var(--card-hover);
-      border-color: var(--gold-primary);
-    }
-
-    .btn-action.btn-primary {
-      background: linear-gradient(135deg, var(--gold-primary), #e5a407);
-      color: #000;
-      border: none;
-    }
-
-    .btn-action.btn-primary:hover {
-      box-shadow: 0 4px 12px var(--gold-glow);
-    }
-
-    /* Telemetry Cluster */
-    .telemetry-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      margin-top: 16px;
-    }
-
-    .telemetry-box {
-      background: #0d0f14;
-      border: 1px solid var(--card-border);
-      border-radius: 12px;
-      padding: 14px;
-    }
-
-    .tel-label {
-      font-size: 11px;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      font-weight: 600;
-    }
-
-    .tel-num {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 24px;
-      font-weight: 900;
-      margin: 4px 0 2px 0;
-    }
-
-    .tel-desc {
-      font-size: 11px;
-      color: var(--emerald-ready);
-      font-weight: 500;
-    }
-
-    /* Color Tokens Swatches */
-    .color-swatches {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      margin-top: 16px;
-    }
-
-    @media (max-width: 650px) {
-      .color-swatches {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    .swatch-card {
-      background: #0d0f14;
-      border: 1px solid var(--card-border);
-      border-radius: 12px;
-      padding: 12px;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .swatch-card:hover {
-      border-color: var(--gold-primary);
-      transform: translateY(-2px);
-    }
-
-    .swatch-color {
-      height: 48px;
-      border-radius: 8px;
-      margin-bottom: 10px;
-      display: flex;
-      align-items: flex-end;
-      justify-content: flex-end;
-      padding: 4px;
-    }
-
-    .swatch-badge {
-      font-size: 9px;
-      font-weight: 800;
-      background: rgba(0, 0, 0, 0.7);
-      color: #fff;
-      padding: 2px 6px;
-      border-radius: 4px;
-    }
-
-    .swatch-name {
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    .swatch-hex {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 11px;
-      color: var(--text-muted);
-      display: flex;
-      justify-content: space-between;
-      margin-top: 2px;
-    }
-
-    /* Toast Notification */
-    #toast {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      background: #181b24;
-      border: 1px solid var(--gold-primary);
-      color: var(--text-main);
-      padding: 12px 20px;
-      border-radius: 12px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-      transform: translateY(100px);
-      opacity: 0;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    #toast.show {
-      transform: translateY(0);
-      opacity: 1;
-    }
-
-    /* Code Block */
-    .code-container {
-      background: #0a0b0e;
-      border: 1px solid var(--card-border);
-      border-radius: 12px;
-      padding: 16px;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
-      color: #e5e7eb;
-      overflow-x: auto;
-      margin-top: 14px;
-    }
-
-    .code-comment { color: #6b7280; }
-    .code-kw { color: #f472b6; }
-    .code-str { color: #34d399; }
-    .code-num { color: #fbbf24; }
-
-    /* Footer */
-    footer {
-      border-top: 1px solid var(--card-border);
-      padding-top: 32px;
-      margin-top: 60px;
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 13px;
-    }
-
-    footer a {
-      color: var(--gold-primary);
-      text-decoration: none;
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Golden Hawks Helmet Shuffle | Blender add-on for Laurier football</title>
+<meta name="description" content="A Blender add-on that builds the helmet shell game for Laurier Athletics' football videoboard. Delivered for Senior Day vs Carleton, October 17, 2026.">
+<meta name="theme-color" content="#12001F">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --ground: #12001F;  /* a shade under Deep Purple */
+    --panel: #20003B;   /* Deep Purple */
+    --rule: #4B2882;    /* Laurier Purple */
+    --gold: #FDB913;    /* the one accent */
+    --ink: #F4F1F8;
+    --muted: #BDB3CC;
+    --display: "Barlow Condensed", "Arial Narrow", sans-serif;
+    --body: "Barlow", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font: 400 1.0625rem/1.6 var(--body);
+    -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 68rem; margin: 0 auto; padding-inline: 1.25rem; }
+  a { color: var(--ink); text-decoration-color: var(--gold); text-underline-offset: 3px; }
+  a:hover { color: var(--gold); }
+  a:focus-visible, video:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+  code, pre, kbd { font-family: var(--mono); font-size: 0.9em; }
+  code { overflow-wrap: anywhere; }
+  p, ul, ol, dl { margin: 0; }
+
+  /* header */
+  .top { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding-block: 1.1rem; border-bottom: 1px solid var(--rule); }
+  .top a { font: 600 1rem/1 var(--display); letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; }
+
+  /* hero */
+  .hero { padding-block: 3rem 2rem; }
+  .eyebrow { font: 600 0.95rem/1 var(--display); letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); }
+  h1 {
+    margin: 0.75rem 0 1rem;
+    font: 700 clamp(2.6rem, 8vw, 5rem)/0.95 var(--display);
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+  }
+  .lede { max-width: 38rem; font-size: 1.2rem; color: var(--muted); }
+  .lede strong { color: var(--ink); font-weight: 500; }
+  .actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1.75rem; }
+  .btn {
+    display: inline-block;
+    padding: 0.7rem 1.15rem;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    font: 600 1.05rem/1 var(--display);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  .btn:hover { border-color: var(--gold); }
+  .btn-gold { background: var(--gold); border-color: var(--gold); color: var(--ground); }
+  .btn-gold:hover { color: var(--ground); background: #FFC93D; }
+
+  /* clip */
+  .clip { margin: 0 0 1rem; }
+  .clip video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: #000; border: 1px solid var(--rule); border-radius: 4px; }
+  .clip figcaption { margin-top: 0.75rem; color: var(--muted); font-size: 0.95rem; }
+
+  /* sections */
+  .block { padding-block: 3rem; border-top: 1px solid var(--rule); }
+  .clip + .block { border-top: 0; }
+  h2 {
+    display: flex; align-items: center; gap: 0.6rem;
+    margin: 0 0 1.25rem;
+    font: 700 clamp(1.7rem, 4vw, 2.2rem)/1 var(--display);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+  h2::before { content: ""; flex: none; width: 0.45rem; height: 0.9em; background: var(--gold); }
+  h3 { margin: 0 0 0.4rem; font: 600 1.3rem/1.15 var(--display); letter-spacing: 0.02em; }
+  .block > p { max-width: 40rem; }
+  .block > p + * { margin-top: 1.5rem; }
+
+  /* delivered spec */
+  .spec { display: grid; max-width: 40rem; border-top: 1px solid var(--rule); }
+  .spec div { display: grid; grid-template-columns: 8rem 1fr; gap: 1rem; padding-block: 0.7rem; border-bottom: 1px solid var(--rule); }
+  .spec dt { font: 600 0.95rem/1.6 var(--display); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+  .spec dd { margin: 0; }
+
+  /* lists */
+  .list { max-width: 40rem; padding-left: 1.2rem; }
+  .list li + li, .steps li + li { margin-top: 0.6rem; }
+  .list li::marker { color: var(--gold); }
+  .steps { max-width: 40rem; padding-left: 1.4rem; }
+  .steps li::marker { font-family: var(--display); font-weight: 700; color: var(--gold); }
+
+  /* speed */
+  .stat { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5rem 1.5rem; }
+  .stat-num { font: 700 clamp(3rem, 11vw, 5.5rem)/1 var(--display); color: var(--gold); text-transform: uppercase; white-space: nowrap; }
+  .stat-label { max-width: 26rem; color: var(--muted); }
+
+  /* exports */
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1rem; }
+  .cards article { padding: 1.25rem; background: var(--panel); border: 1px solid var(--rule); border-radius: 4px; }
+  .cards p { color: var(--muted); }
+
+  /* commands */
+  pre {
+    margin: 0.75rem 0 0;
+    padding: 0.9rem 1rem;
+    background: var(--panel);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    overflow-x: auto;
+  }
+  .nw { white-space: nowrap; } /* phones would otherwise break "--flag" and "Add-ons" at the hyphen */
+  .cmd + .cmd { margin-top: 2rem; }
+  .cmd p { max-width: 40rem; }
+  .cmd .note { margin-top: 0.75rem; color: var(--muted); font-size: 0.95rem; }
+  :not(pre) > code { padding: 0.05em 0.3em; background: var(--panel); border-radius: 3px; }
+  kbd { padding: 0.05em 0.4em; border: 1px solid var(--rule); border-bottom-width: 2px; border-radius: 3px; }
+
+  /* links + footer */
+  .links { display: grid; gap: 0.6rem; padding: 0; list-style: none; }
+  .links span { color: var(--muted); }
+  footer { padding-block: 2rem 3rem; border-top: 1px solid var(--rule); color: var(--muted); font-size: 0.95rem; }
+
+  @media (max-width: 30rem) {
+    .spec div { grid-template-columns: 1fr; gap: 0.1rem; }
+  }
+</style>
 </head>
 <body>
 
-  <div class="container">
+<div class="wrap">
 
-    <!-- NAVBAR -->
-    <header class="navbar">
-      <a href="#" class="nav-brand">
-        <span class="brand-badge">BLENDER 5.2</span>
-        <div class="brand-title">GOLDEN HAWKS <span>SHUFFLE</span></div>
-      </a>
-      <div class="nav-links">
-        <a href="https://github.com/solufelo" target="_blank" class="nav-link">GitHub</a>
-        <a href="https://solufelo.github.io/light-years-engine/" target="_blank" class="nav-link">WASM Engine</a>
-        <a href="releases/laurier_golden_hawks_shuffle_v3.5.0.zip" class="btn-download" download>
-          <span>? Download Addon v3.5.0</span>
-        </a>
-      </div>
-    </header>
+<header class="top">
+  <a href="https://captainsolo.ca">Solomon Olufelo</a>
+  <a href="https://github.com/solufelo/golden-hawks-helmet-shuffle">GitHub</a>
+</header>
 
-    <!-- HERO BANNER -->
-    <div class="hero-banner">
-      <div class="hero-tags">
-        <span class="tag tag-gold">Wilfrid Laurier Athletics</span>
-        <span class="tag tag-purple">Rockstar Games Tools Spec</span>
-        <span class="tag tag-cyan">Broadcast Sandwich v3.5.0</span>
-      </div>
-      <h1 class="hero-title">
-        The High-Performance <span>Stadium Videoboard</span> Motion Engine
-      </h1>
-      <p class="hero-subtitle">
-        Zero perspective text overlap via dynamic camera-normal tilt (61.74°), 1-click Fitts's Law live game-day execution, 4 atmospheric volumetric lighting moods, and runtime Unit Quaternion track serialization for AAA game engines.
-      </p>
+<main>
+  <section class="hero">
+    <p class="eyebrow">Blender add-on &middot; v3.5.0</p>
+    <h1>Golden Hawks Helmet Shuffle</h1>
+    <p class="lede">A Blender add-on that builds the helmet shell game for <strong>Laurier Athletics' football videoboard</strong>. Three helmets, one football, and a winner you choose before you render.</p>
+    <p class="actions">
+      <a class="btn btn-gold" href="releases/laurier_golden_hawks_shuffle_v3.5.0.zip" download>Download v3.5.0</a>
+      <a class="btn" href="#install">How to install</a>
+    </p>
+  </section>
 
-      <!-- LIVE PILLS -->
-      <div class="pills-ribbon">
-        <div class="pill">
-          <span class="pill-dot dot-pulse" style="background: #10B981;"></span>
-          <span>1080p60 APPLE PRORES 422 HQ</span>
-        </div>
-        <div class="pill">
-          <span class="pill-dot dot-pulse" style="background: #FDB913;"></span>
-          <span>AGX HIGH CONTRAST</span>
-        </div>
-        <div class="pill">
-          <span class="pill-dot" style="background: #00F5D4;"></span>
-          <span>RAGE / UNREAL QUATERNION TRACKS</span>
-        </div>
-        <div class="pill">
-          <span class="pill-dot" style="background: #10B981;"></span>
-          <span>0 MEMORY LEAKS (DETERMINISTIC)</span>
-        </div>      </div>
+  <figure class="clip">
+    <video src="assets/web/laurier-helmet-shuffle-m.mp4" poster="assets/web/laurier-helmet-shuffle-m-poster.webp" width="1920" height="1080" muted autoplay loop playsinline controls aria-label="Delivered clip: three purple helmets shuffle over a football on turf, then the right helmet lifts to show the ball."></video>
+    <figcaption>The delivered clip, variant 3: the right helmet wins. Shown muted.</figcaption>
+  </figure>
 
-      <!-- HERO ARTWORK SHOWCASE -->
-      <div style="margin-top: 24px; border-radius: 16px; overflow: hidden; border: 1px solid var(--card-border); box-shadow: 0 16px 36px rgba(0,0,0,0.6);">
-        <img src="assets/golden_hawks_hero.jpg" alt="Golden Hawks Helmet Shuffle Studio Hero Artwork" style="width: 100%; height: auto; display: block;" />
-      </div>
+  <section class="block" aria-labelledby="delivered">
+    <h2 id="delivered">Delivered</h2>
+    <p>Made for the Senior Day game against Carleton on October 17, 2026, at Knight-Newbrough Field in Waterloo.</p>
+    <dl class="spec">
+      <div><dt>Variants</dt><dd>V1 left wins, V2 center wins, V3 right wins</dd></div>
+      <div><dt>Masters</dt><dd>Apple ProRes 422 HQ</dd></div>
+      <div><dt>Previews</dt><dd>H.264 with game-show sound</dd></div>
+      <div><dt>Format</dt><dd>1920 &times; 1080, 30 fps, 16 seconds</dd></div>
+    </dl>
+  </section>
+
+  <section class="block" aria-labelledby="does">
+    <h2 id="does">What it does</h2>
+    <ul class="list">
+      <li>Sets up three helmets and one football. You pick the winning slot: left, center or right.</li>
+      <li>An intro reveal lifts a helmet to show where the ball starts.</li>
+      <li>The helmets swap places, with short pauses between moves and a suspense hold before the reveal.</li>
+      <li>A camera dolly pushes in for the swaps and pulls back for the reveal.</li>
+      <li>Banners cue the crowd (WATCH CLOSELY!, WHERE IS IT?) and the numerals 1, 2, 3 let fans call their pick.</li>
+      <li>Title and banner text are tilted to face the camera.</li>
+    </ul>
+  </section>
+
+  <section class="block" aria-labelledby="speed">
+    <h2 id="speed">Speed</h2>
+    <p class="stat">
+      <span class="stat-num">Under 100 ms</span>
+      <span class="stat-label">to bake the 305-frame benchmark scene at 30 fps, timed by the add-on.</span>
+    </p>
+  </section>
+
+  <section class="block" aria-labelledby="exports">
+    <h2 id="exports">Exports</h2>
+    <div class="cards">
+      <article>
+        <h3>Cue sheet</h3>
+        <p>JSON and CSV with the frame and timecode of every swap, the suspense hold and the reveal. For After Effects and sound.</p>
+      </article>
+      <article>
+        <h3>Game-engine tracks</h3>
+        <p>JSON, per frame: unit quaternions [w, x, y, z], velocity vectors and Y-up positions.</p>
+      </article>
+      <article>
+        <h3>Trajectory arcs</h3>
+        <p>3D curves of each helmet's path, for checking clearances between swaps.</p>
+      </article>
     </div>
+  </section>
 
-    <!-- MAIN 2-COLUMN GRID: N-PANEL SIMULATOR & TELEMETRY -->
-    <div class="grid-2">
+  <section class="block" aria-labelledby="install">
+    <h2 id="install">Install</h2>
+    <p>Needs Blender 4.0 or newer.</p>
+    <ol class="steps">
+      <li>Download <a href="releases/laurier_golden_hawks_shuffle_v3.5.0.zip" download><code>laurier_<wbr>golden_<wbr>hawks_<wbr>shuffle_<wbr>v3.5.0.zip</code></a>. Keep it zipped.</li>
+      <li>In Blender, open <b>Edit &rsaquo; Preferences &rsaquo; <span class="nw">Add-ons</span></b>.</li>
+      <li>Open the menu at the top right, choose <b>Install from Disk</b> and pick the zip. On Blender 4.0 and 4.1, use the <b>Install</b> button.</li>
+      <li>Tick <b>Golden Hawks Helmet Shuffle</b> if it is not already on.</li>
+      <li>In the 3D Viewport, press <kbd>N</kbd> and open the <b>Golden Hawks</b> tab.</li>
+    </ol>
+  </section>
 
-      <!-- COLUMN 1: N-PANEL SIMULATOR -->
-      <div class="card">
-        <div class="card-header">
-          <div>
-            <h2 class="card-title">? Viewport N-Panel Simulator</h2>
-            <p class="card-desc">Interactive Blender 3D sidebar controls (View3D > Sidebar > Golden Hawks)</p>
-          </div>
-        </div>
-
-        <div class="npanel-container">
-          <div class="npanel-topbar">
-            <span>GOLDEN HAWKS HELMET SHUFFLE</span>
-            <span style="color: var(--gold-primary);">v3.5.0</span>
-          </div>
-
-          <div class="npanel-tabs">
-            <button class="npanel-tab active" onclick="setTab('presentation', this)">1. Layout</button>
-            <button class="npanel-tab" onclick="setTab('stadium', this)">2. Venue</button>
-            <button class="npanel-tab" onclick="setTab('shuffle', this)">3. Shuffle</button>
-            <button class="npanel-tab" onclick="setTab('render', this)">4. Render</button>
-            <button class="npanel-tab" onclick="setTab('tools', this)">5. Studio</button>
-          </div>
-
-          <div class="npanel-body" id="tabContent">
-            <!-- Populated via JavaScript -->
-          </div>
-        </div>
-
-        <div class="btn-action-group">
-          <button class="btn-action btn-primary" onclick="simulateBake(true)">
-            ? 1-Click Game-Day Show
-          </button>
-          <button class="btn-action" onclick="simulateBake(false)">
-            Bake Shuffle Animation
-          </button>
-        </div>
-      </div>
-
-      <!-- COLUMN 2: REAL-TIME TELEMETRY PROFILER -->
-      <div class="card">
-        <div class="card-header">
-          <div>
-            <h2 class="card-title">?? Real-Time Telemetry Profiler</h2>
-            <p class="card-desc">Microsecond benchmarking via Python tracemalloc & perf_counter</p>
-          </div>
-          <button class="btn-action" style="padding: 6px 12px; font-size: 11px;" onclick="runBenchmark()">
-            ? Live Benchmark
-          </button>
-        </div>
-
-        <div class="telemetry-grid">
-          <div class="telemetry-box">
-            <div class="tel-label">Bake Latency</div>
-            <div class="tel-num val-gold" id="benchLatency">74.78 ms</div>
-            <div class="tel-desc">? Sub-100ms Budget (Real-time)</div>
-          </div>
-
-          <div class="telemetry-box">
-            <div class="tel-label">Keyframe Throughput</div>
-            <div class="tel-num val-cyan" id="benchThroughput">41,522 k/s</div>
-            <div class="tel-desc">? 3,105 Keys Continuous Bake</div>
-          </div>
-
-          <div class="telemetry-box">
-            <div class="tel-label">Memory Overhead</div>
-            <div class="tel-num val-green" id="benchMemory">+0.156 MB</div>
-            <div class="tel-desc">? Zero Garbage Accumulation</div>
-          </div>
-
-          <div class="telemetry-box">
-            <div class="tel-label">Camera Normal Pitch</div>
-            <div class="tel-num" style="color: #c084fc;">61.74°</div>
-            <div class="tel-desc">? Zero Keystoning Distortion</div>
-          </div>
-        </div>
-
-        <!-- CODE SNIPPET -->
-        <div class="code-container">
-          <div class="code-comment"># Runtime Quaternion Serialization Sample</div>
-          <div>{</div>
-          <div>&nbsp;&nbsp;<span class="code-kw">"actor_id"</span>: <span class="code-str">"HELMET_GOLD_1"</span>,</div>
-          <div>&nbsp;&nbsp;<span class="code-kw">"quaternion_wxyz"</span>: [<span class="code-num">0.9238</span>, <span class="code-num">0.0</span>, <span class="code-num">0.3826</span>, <span class="code-num">0.0</span>],</div>
-          <div>&nbsp;&nbsp;<span class="code-kw">"velocity_vector"</span>: [<span class="code-num">1.45</span>, <span class="code-num">0.0</span>, <span class="code-num">0.82</span>],</div>
-          <div>&nbsp;&nbsp;<span class="code-kw">"speed_mps"</span>: <span class="code-num">1.66</span></div>
-          <div>}</div>
-        </div>
-      </div>
-
+  <section class="block" aria-labelledby="headless">
+    <h2 id="headless">Run it headless</h2>
+    <p>From the repo folder, with Blender on your PATH.</p>
+    <div class="cmd">
+      <h3>Test suite</h3>
+      <p>Runs the 12 checks in <code>scripts/test_addon.py</code>.</p>
+      <pre><code>blender -b --python scripts/test_addon.py</code></pre>
     </div>
-
-    <!-- COLOR SCIENCE & LED DIODE PROTECTION -->
-    <div class="card" style="margin-bottom: 32px;">
-      <div class="card-header">
-        <div>
-          <h2 class="card-title">?? LED Diode Protection & Collegiate Color Tokens</h2>
-          <p class="card-desc">Click any swatch to copy linear RGB / HEX to your clipboard</p>
-        </div>
-        <span class="tag tag-gold">APL Voltage Drop Protected</span>
-      </div>
-
-      <div class="color-swatches">
-        <div class="swatch-card" onclick="copyToken('#FDB913', 'Varsity Gold')">
-          <div class="swatch-color" style="background: #FDB913;">
-            <span class="swatch-badge">0.22 Emit</span>
-          </div>
-          <div class="swatch-name" style="color: #FDB913;">Varsity Gold</div>
-          <div class="swatch-hex"><span>#FDB913</span><span>Copy ??</span></div>
-        </div>
-
-        <div class="swatch-card" onclick="copyToken('#20003B', 'Darkness Purple')">
-          <div class="swatch-color" style="background: #20003B; border: 1px solid #7928CA;">
-            <span class="swatch-badge">Deep Stroke</span>
-          </div>
-          <div class="swatch-name" style="color: #c084fc;">Darkness Purple</div>
-          <div class="swatch-hex"><span>#20003B</span><span>Copy ??</span></div>
-        </div>
-
-        <div class="swatch-card" onclick="copyToken('#00F5D4', 'Cyber Volt Cyan')">
-          <div class="swatch-color" style="background: #00F5D4;">
-            <span class="swatch-badge">4.0 Emit</span>
-          </div>
-          <div class="swatch-name" style="color: #00F5D4;">Cyber Volt Cyan</div>
-          <div class="swatch-hex"><span>#00F5D4</span><span>Copy ??</span></div>
-        </div>
-
-        <div class="swatch-card" onclick="copyToken('#121316', 'Stadium Slate')">
-          <div class="swatch-color" style="background: #121316; border: 1px solid #374151;">
-            <span class="swatch-badge">Carbon Backdrop</span>
-          </div>
-          <div class="swatch-name" style="color: #9CA3AF;">Stadium Slate</div>
-          <div class="swatch-hex"><span>#121316</span><span>Copy ??</span></div>
-        </div>
-      </div>
+    <div class="cmd">
+      <h3>Batch bake</h3>
+      <p>Bakes a center-wins shuffle and writes the game-engine tracks and a timing report to the current folder.</p>
+      <pre><code>blender -b --python scripts/pipeline_batch_runner.py <span class="nw">-- --swaps 4</span> <span class="nw">--outcome SLOT_2</span></code></pre>
+      <p class="note"><code class="nw">--swaps</code> sets the number of swaps (3 to 30). <code class="nw">--outcome</code> picks the winner: <code>SLOT_1</code> left, <code>SLOT_2</code> center, <code>SLOT_3</code> right, or <code>RANDOM</code>.</p>
     </div>
+  </section>
 
-    <!-- QUICK INSTALLATION GUIDE -->
-    <div class="card">
-      <div class="card-header">
-        <div>
-          <h2 class="card-title">?? 1-Click Installation & Headless Pipeline</h2>
-          <p class="card-desc">Compatible with Blender 4.0 through Blender 5.2.1 LTS</p>
-        </div>
-      </div>
+  <section class="block" aria-labelledby="links">
+    <h2 id="links">Links</h2>
+    <ul class="links">
+      <li><a href="https://github.com/solufelo/golden-hawks-helmet-shuffle">Source code on GitHub</a></li>
+      <li><a href="https://captainsolo.ca/work/laurier-gameday">Laurier Game Day case study</a> <span>on captainsolo.ca</span></li>
+      <li><a href="https://solufelo.github.io/light-years-engine/">Light Years Engine</a></li>
+      <li><a href="https://captainsolo.ca">captainsolo.ca</a> <span>portfolio</span></li>
+    </ul>
+  </section>
+</main>
 
-      <div class="grid-2" style="margin-bottom: 0;">
-        <div>
-          <h3 style="font-size: 15px; margin-bottom: 8px;">Method A: Blender GUI Preferences</h3>
-          <ol style="padding-left: 20px; font-size: 13px; color: var(--text-muted); line-height: 1.8;">
-            <li>Download <a href="releases/laurier_golden_hawks_shuffle_v3.5.0.zip" style="color: var(--gold-primary);">laurier_golden_hawks_shuffle_v3.5.0.zip</a>.</li>
-            <li>In Blender, open <strong>Edit > Preferences > Add-ons</strong>.</li>
-            <li>Click the arrow in the top right and choose <strong>Install from Disk...</strong>.</li>
-            <li>Select the ZIP and toggle <strong>Golden Hawks Helmet Shuffle</strong> on.</li>
-            <li>Press <strong>N</strong> in the 3D Viewport and click the <strong>Golden Hawks</strong> tab!</li>
-          </ol>
-        </div>
+<footer>
+  <p>Built by Solomon Olufelo for Laurier Athletics football.</p>
+</footer>
 
-        <div>
-          <h3 style="font-size: 15px; margin-bottom: 8px;">Method B: Automated Studio CLI Runner</h3>
-          <div class="code-container" style="margin-top: 0;">
-            <div class="code-comment"># Headless batch generation & export</div>
-            <div>blender.exe -b --python scripts/pipeline_batch_runner.py -- \</div>
-            <div>&nbsp;&nbsp;--swaps 5 \</div>
-            <div>&nbsp;&nbsp;--preset NIGHT_GAME_FLOODLIGHT \</div>
-            <div>&nbsp;&nbsp;--outcome SLOT_1 \</div>
-            <div>&nbsp;&nbsp;--export-tracks --benchmark</div>
-          </div>
-        </div>
-      </div>
-    </div>
+</div>
 
-    <!-- FOOTER -->
-    <footer>
-      <p>
-        Engineered with precision by <strong>Solomon Olufelo</strong> for Wilfrid Laurier University Athletics & AAA Game Studio Spec.
-      </p>
-      <p style="margin-top: 8px;">
-        <a href="https://github.com/solufelo" target="_blank">GitHub</a> • 
-        <a href="https://solufelo.github.io/light-years-engine/" target="_blank">Light Years WebAssembly Engine</a> • 
-        Licensed under MIT
-      </p>
-    </footer>
-
-  </div>
-
-  <!-- TOAST NOTIFICATION -->
-  <div id="toast">
-    <span style="color: var(--gold-primary);">?</span>
-    <span id="toastMsg">Copied to clipboard!</span>
-  </div>
-
-  <script>
-    const tabData = {
-      presentation: [
-        { k: "Layout Mode", v: "SANDWICH (+Y=0.58, -Y=-0.58)", c: "val-gold" },
-        { k: "Pitch Normal Angle", v: "61.74° Dynamic Tilt", c: "val-cyan" },
-        { k: "Air Gap Clearance", v: "+0.26 Screen Height Units", c: "val-green" },
-        { k: "Exit Animation", v: "BURST_FORWARD (Symmetrical)", c: "val-gold" },
-        { k: "Dual Typography", v: "Radwave Display + Agency FB", c: "" }
-      ],
-      stadium: [
-        { k: "Lighting Mood", v: "NIGHT_GAME_FLOODLIGHT (5800K)", c: "val-gold" },
-        { k: "Volumetric Haze", v: "Principled Volume (0.005 Density)", c: "val-cyan" },
-        { k: "Turf Pitch", v: "36m x 36m PBR Football Field", c: "val-green" },
-        { k: "Goalposts", v: "3D Collegiate Posts at Z=0.0m", c: "" }
-      ],
-      shuffle: [
-        { k: "Swap Mechanics", v: "4 Swaps (20 Frames / Swap)", c: "val-gold" },
-        { k: "Centripetal Easing", v: "0.85m Depth Arc & Dynamic Bank", c: "val-cyan" },
-        { k: "Winning Target", v: "Randomized with Intro Reveal", c: "val-green" },
-        { k: "Cognitive Pacing", v: "Clean Screen (Zero Text in Swaps)", c: "" }
-      ],
-      render: [
-        { k: "Export Codec", v: "Apple ProRes 422 HQ (.mov)", c: "val-gold" },
-        { k: "Alpha Channel", v: "ProRes 4444 RGBA Supported", c: "val-cyan" },
-        { k: "Resolution & Rate", v: "1920x1080 at 60.00 FPS", c: "val-green" },
-        { k: "Color Transform", v: "AgX High Contrast (Punchy LED)", c: "" }
-      ],
-      tools: [
-        { k: "Engine Target", v: "Rockstar RAGE / Unreal Engine", c: "val-gold" },
-        { k: "Track Export", v: "Unit Quaternions + Velocities (.json)", c: "val-cyan" },
-        { k: "Motion Arcs", v: "3D Glowing Viewport Splines", c: "val-green" },
-        { k: "Memory Profiler", v: "tracemalloc Microsecond Delta", c: "val-gold" }
-      ]
-    };
-
-    function renderTab(tabKey) {
-      const rows = tabData[tabKey] || [];
-      const container = document.getElementById("tabContent");
-      container.innerHTML = rows.map(r => `
-        <div class="npanel-row">
-          <span class="npanel-key">${r.k}</span>
-          <span class="npanel-val ${r.c}">${r.v}</span>
-        </div>
-      `).join('');
-    }
-
-    function setTab(tabKey, btn) {
-      document.querySelectorAll(".npanel-tab").forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-      renderTab(tabKey);
-    }
-
-    function simulateBake(isOneClick) {
-      const btnLatency = document.getElementById("benchLatency");
-      const btnThroughput = document.getElementById("benchThroughput");
-      const btnMemory = document.getElementById("benchMemory");
-
-      btnLatency.innerText = "Baking...";
-      btnThroughput.innerText = "...";
-
-      setTimeout(() => {
-        const ms = (70 + Math.random() * 25).toFixed(2);
-        const speed = Math.floor(38000 + Math.random() * 6000).toLocaleString();
-        const mem = (0.150 + Math.random() * 0.015).toFixed(3);
-
-        btnLatency.innerText = `${ms} ms`;
-        btnThroughput.innerText = `${speed} k/s`;
-        btnMemory.innerText = `+${mem} MB`;
-
-        showToast(isOneClick ? "? 1-Click Game-Day Show Initialized!" : "Bake Complete: 3,105 Keys Generated!");
-      }, 350);
-    }
-
-    function runBenchmark() {
-      simulateBake(true);
-    }
-
-    function copyToken(hex, name) {
-      navigator.clipboard.writeText(hex).then(() => {
-        showToast(`Copied ${name} (${hex}) to clipboard!`);
-      }).catch(() => {
-        showToast(`Selected: ${hex}`);
-      });
-    }
-
-    function showToast(msg) {
-      const t = document.getElementById("toast");
-      const m = document.getElementById("toastMsg");
-      m.innerText = msg;
-      t.classList.add("show");
-      setTimeout(() => {
-        t.classList.remove("show");
-      }, 2500);
-    }
-
-    // Initialize default tab
-    renderTab("presentation");
-  </script>
+<script>
+  // Respect reduced motion: no autoplay; the controls still let people play it.
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const v = document.querySelector('video');
+    v.removeAttribute('autoplay');
+    v.pause();
+  }
+</script>
 </body>
 </html>
-

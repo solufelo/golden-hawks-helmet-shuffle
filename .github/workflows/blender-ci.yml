@@ -90,7 +90,7 @@ jobs:
           mkdir -p _site/assets
           mkdir -p _site/releases
           cp index.html _site/
-          cp assets/* _site/assets/ 2>/dev/null || true
+          cp -r assets/* _site/assets/ 2>/dev/null || true
           cp releases/* _site/releases/ 2>/dev/null || true
           touch _site/.nojekyll
 
