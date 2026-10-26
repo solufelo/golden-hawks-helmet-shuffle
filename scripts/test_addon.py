@@ -1,8 +1,8 @@
 """
-Golden Hawks Helmet Shuffle (v3.5.1) - Automated Verification Test Suite
+Golden Hawks Helmet Shuffle (v3.5.2) - Automated Verification Test Suite
 ========================================================================
 Author: Solomon Olufelo (Tools & Pipeline Developer)
-Target: Wilfrid Laurier University Athletics & AAA Game Studio Spec (Rockstar Games)
+Target: Wilfrid Laurier University Athletics
 
 Usage:
   blender.exe -b --python scripts/test_addon.py
@@ -16,8 +16,8 @@ import time
 
 def run_suite():
     print("=" * 75)
-    print("  GOLDEN HAWKS HELMET SHUFFLE v3.5.1 - AUTOMATED VERIFICATION TEST SUITE")
-    print("  Wilfrid Laurier Athletics Production & AAA Studio Spec (Rockstar Games)")
+    print("  GOLDEN HAWKS HELMET SHUFFLE v3.5.2 - AUTOMATED VERIFICATION TEST SUITE")
+    print("  Wilfrid Laurier Athletics Production")
     print("=" * 75)
 
     # 1. Addon Registration & Local Fallback
@@ -100,7 +100,7 @@ def run_suite():
     assert len(traj_obj.data.materials) >= 3, f"Expected >= 3 materials, got {len(traj_obj.data.materials)}"
     print(f"  -> PASS: 3D Motion Trajectory Arcs verified ({len(traj_obj.data.splines)} splines, {len(traj_obj.data.materials)} materials).")
 
-    # 6. AAA Game Engine Animation Track Exporter
+    # 6. Game Engine Animation Track Exporter
     print("[TEST 6] Testing golden_hawks.export_game_engine_anim...")
     res_anim = bpy.ops.golden_hawks.export_game_engine_anim()
     assert 'FINISHED' in res_anim, "export_game_engine_anim failed"
@@ -118,7 +118,7 @@ def run_suite():
     assert "quaternion_wxyz" in sample, "Missing quaternion_wxyz in actor sample"
     assert "velocity_vector" in sample, "Missing velocity_vector in actor sample"
     assert "position_game_engine" in sample, "Missing position_game_engine (Y-up swizzle)"
-    print(f"  -> PASS: AAA Game Engine Track verified ({len(track_data['actors'])} actors, {track_data['metadata']['total_frames']} frames).")
+    print(f"  -> PASS: Game Engine Track verified ({len(track_data['actors'])} actors, {track_data['metadata']['total_frames']} frames).")
 
     # 7. Telemetry Benchmark Export
     print("[TEST 7] Testing golden_hawks.export_telemetry...")

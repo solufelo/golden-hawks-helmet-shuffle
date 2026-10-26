@@ -1,6 +1,6 @@
 schema_version = "1.0.0"
 id = "golden_hawks_shuffle"
-version = "3.5.1"
+version = "3.5.2"
 name = "Golden Hawks Helmet Shuffle"
 tagline = "Laurier Golden Hawks Game-Day Helmet Shuffle and 3D Motion Suite"
 maintainer = "Solomon Olufelo <solomon@wlu.ca>"

@@ -2,6 +2,13 @@
 
 All notable changes to the Laurier Football Shell Game Blender addon will be documented in this file.
 
+## [3.5.2] - 2026-10-26
+
+### Changed
+- Labels, tooltips, panel titles, script output and export headers no longer mention Rockstar, AAA or RAGE. The export data is unchanged. The game-engine track header drops its `$schema` link, which pointed at a site that doesn't exist. The dropdown's stored ID `RAGE_JSON` stays, so saved .blend files still load.
+- Docs cleaned the same way, and the portfolio blueprint removed from the repo.
+- Release zip rebuilt as `laurier_golden_hawks_shuffle_v3.5.2.zip`, same layout as before.
+
 ## [3.5.1] - 2026-10-26
 
 ### Fixed
@@ -13,9 +20,9 @@ All notable changes to the Laurier Football Shell Game Blender addon will be doc
 
 ## [3.5.0] - 2026-09-08
 
-### 🎸 Rockstar Games Tools Engineering Suite & Telemetry Profiler
-- **AAA Game Engine Animation Track Exporter (`golden_hawks.export_game_engine_anim`)**:
-  - Exports standardized runtime animation tracks (`golden_hawks_anim_tracks.json`) compatible with Rockstar RAGE, Unreal, and glTF runtimes.
+### Game-Engine Export & Telemetry Profiler
+- **Game Engine Animation Track Exporter (`golden_hawks.export_game_engine_anim`)**:
+  - Exports standardized runtime animation tracks (`golden_hawks_anim_tracks.json`) for game-engine runtimes.
   - Extracts per-frame Unit Quaternions $[w, x, y, z]$, Euler angles, instantaneous velocity vectors $[\dot{x}, \dot{y}, \dot{z}]$, speed ($m/s$), and normalized timestamps $[0.0 \to 1.0]$.
   - Coordinates exported in both Blender native ($Z$-up) and Game Engine swizzled standard ($Y$-up: $X, Z, -Y$).
   - Discrete event markers embedded along timeline (`"BUMPER_SEQUENCE_START"`, `"BUMPER_KINETIC_BOOM_SLAM"`, `"ORBITAL_SHUFFLE_SWAP_BEGIN"`, `"SUSPENSE_FREEZE"`, `"WINNING_HELMET_CLIMAX_LIFT"`).
@@ -28,7 +35,7 @@ All notable changes to the Laurier Football Shell Game Blender addon will be doc
   - Allows Technical Artists to visually inspect centripetal banking, apex arcs, and spatial clearances before rendering.
 - **Headless Studio Pipeline Batch Runner (`pipeline_batch_runner.py`)**:
   - Standalone CLI batch runner enabling zero-GUI automated scene generation, asset baking, telemetry profiling, and data track exporting.
-- **Dedicated N-Panel Tab ("5. Studio & Tools (Rockstar Spec)")**:
+- **Dedicated N-Panel Tab ("5. Studio & Tools")**:
   - Streamlined studio toolset directly accessible in the 3D Viewport sidebar alongside the 4 broadcast stages.
 
 ## [3.4.0] - 2026-09-08

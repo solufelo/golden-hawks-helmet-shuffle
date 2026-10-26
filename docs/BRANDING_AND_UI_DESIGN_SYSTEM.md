@@ -1,9 +1,8 @@
 # 🎨 Golden Hawks Helmet Shuffle — Brand Identity & UI/UX Design System
 
 > **Brand**: Golden Hawks Helmet Shuffle ⚡ Game-Day Interactive Suite  
-> **Client / Partnership**: Wilfrid Laurier Athletics × Rockstar Games Tools Spec  
+> **Client**: Wilfrid Laurier Athletics  
 > **Version**: 3.5.0  
-> **Master Hub**: [[../../VAULT_INDEX.md|Root Vault Index]] | [[ROCKSTAR_GAMES_PORTFOLIO_BLUEPRINT.md|Rockstar Portfolio Blueprint]]
 
 ---
 
@@ -59,7 +58,7 @@ The Blender interface in **v3.5.0** applies core human factors engineering and F
 - **Title Block**: Prominent `GOLDEN HAWKS ⚡ HELMET SHUFFLE` title with live versioning (`v3.5.0`).
 - **Sidebar Tab**: Clean, recognizable `Golden Hawks` category tab in the View3D sidebar.
 - **Status Pill Bar**: Four green-lit indicator pills:
-  `[● 60 FPS]` `[● PRORES 422]` `[● RAGE READY]` `[● 0 LEAKS]`
+  `[● 60 FPS]` `[● PRORES 422]` `[● ENGINE TRACKS]` `[● 0 LEAKS]`
   Provides immediate visual confirmation of operational health before any operator is clicked.
 
 ### 2. The Hero Action Deck (Fitts's Law Optimization)
@@ -103,7 +102,7 @@ The Blender interface in **v3.5.0** applies core human factors engineering and F
 * **Section 1**: The Real-World Challenge (APL protection, camera perspective overlap).
 * **Section 2**: Mathematical Innovation (Camera-normal pitch vector `61.74°`, centripetal sine wave banking).
 * **Section 3**: Technical Artist Tooling (Blender N-panel, 3D motion splines, real-time profiler).
-* **Section 4**: Data Interoperability (Runtime quaternion export for Rockstar RAGE & Unreal).
+* **Section 4**: Data Interoperability (Runtime quaternion export for game engines).
 * **Section 5**: 4K Video Reel on Stadium LED Videoboard.
 
 ---

@@ -1,10 +1,10 @@
 bl_info = {
     "name": "Golden Hawks Helmet Shuffle",
     "author": "Solomon Olufelo / Laurier Athletics",
-    "version": (3, 5, 1),
+    "version": (3, 5, 2),
     "blender": (4, 0, 0),
     "location": "View3D > Sidebar > Golden Hawks",
-    "description": "Laurier Golden Hawks Game-Day Helmet Shuffle & AAA Motion Graphics Suite (Interactive Videoboard Shell Game, Broadcast Sandwich Framing, Volumetric Atmosphere, ProRes 422 HQ)",
+    "description": "Laurier Golden Hawks Game-Day Helmet Shuffle (Interactive Videoboard Shell Game, Broadcast Sandwich Framing, Volumetric Atmosphere, ProRes 422 HQ)",
     "category": "Animation",
 }
 
@@ -1272,7 +1272,7 @@ def export_broadcast_cue_sheet(plan, props, winning_item_id: int, total_frames: 
     # Write JSON
     json_path = filepath_base + ".json"
     data = {
-        "suite": "Golden Hawks Helmet Shuffle v3.5.1",
+        "suite": "Golden Hawks Helmet Shuffle v3.5.2",
         "author": "Solomon Olufelo / Wilfrid Laurier Athletics",
         "client": "Wilfrid Laurier Golden Hawks",
         "fps": fps,
@@ -2362,7 +2362,7 @@ def bake_shuffle_to_scene(props):
     scene.frame_end = plan.total_frames
     scene.frame_set(t_start)
 
-    # Calculate telemetry metrics (Rockstar Studio Spec)
+    # Calculate telemetry metrics
     t_prof_end = time.perf_counter()
     cur_mem, peak_mem = tracemalloc.get_traced_memory()
     tracemalloc.stop()
@@ -2412,7 +2412,7 @@ class GoldenHawksShuffleProperties(bpy.types.PropertyGroup):
         step=5
     )
 
-    # UI Workflow Navigation Stage (Rockstar Studio Tools Workflow)
+    # UI Workflow Navigation Stage
     ui_tab: bpy.props.EnumProperty(
         name="Workflow Stage",
         description="Switch between focused production stages",
@@ -2422,12 +2422,12 @@ class GoldenHawksShuffleProperties(bpy.types.PropertyGroup):
             ('STADIUM', "2. Arena & Lights", "Atmosphere moods, volumetric light shafts, goalposts"),
             ('SHUFFLE', "3. Shuffle & Game", "Helmet assignment, swap dynamics, outcome variants"),
             ('RENDER', "4. Render & Sync", "1-Click ProRes/H.264 export, SMPTE cue sheets"),
-            ('TOOLS', "5. Studio & Tools", "Rockstar Spec: Game Engine Animation Tracks, Real-Time Profiler, 3D Motion Arcs"),
+            ('TOOLS', "5. Studio & Tools", "Game Engine Animation Tracks, Real-Time Profiler, 3D Motion Arcs"),
         ],
         default='ALL'
     )
 
-    # --- ROCKSTAR STUDIO TOOLS & TELEMETRY PROPERTIES ---
+    # --- STUDIO TOOLS & TELEMETRY PROPERTIES ---
     last_bake_ms: bpy.props.FloatProperty(
         name="Bake Time (ms)",
         description="Execution duration of last animation bake in milliseconds",
@@ -2457,7 +2457,7 @@ class GoldenHawksShuffleProperties(bpy.types.PropertyGroup):
         name="Target Engine",
         description="Coordinate system and schema for game engine animation track export",
         items=[
-            ('RAGE_JSON', "Rockstar RAGE / Game Engine JSON", "Quaternions, velocity vectors, event markers, normalized time"),
+            ('RAGE_JSON', "Game Engine JSON", "Quaternions, velocity vectors, event markers, normalized time"),  # id kept: saved .blend files store it
             ('GLTF_SCHEMA', "glTF 2.0 / USD TRS Tracks", "Standard TRS time buffer channels"),
             ('UNREAL_UNITY', "Unreal / Unity Standard (Y-Up)", "Y-Up swizzled transform curves"),
         ],
@@ -3447,7 +3447,7 @@ class GOLDEN_HAWKS_OT_export_cue_sheet(bpy.types.Operator):
 
 
 # ============================================================================
-# ROCKSTAR STUDIO SUITE: 3D MOTION TRAJECTORIES & GAME ENGINE RUNTIME EXPORTER
+# STUDIO SUITE: 3D MOTION TRAJECTORIES & GAME ENGINE RUNTIME EXPORTER
 # ============================================================================
 
 def generate_3d_motion_trajectories(scene, objects, total_frames):
@@ -3516,7 +3516,7 @@ def generate_3d_motion_trajectories(scene, objects, total_frames):
 
 
 def export_game_engine_animation_tracks(scene, props):
-    """Exports standardized AAA game-engine animation tracks (Rockstar RAGE / glTF compatible).
+    """Exports standardized game-engine animation tracks as JSON.
     Includes Quaternions, Euler angles, velocity vectors, and discrete event markers."""
     objects, fb_ctrl = get_shuffle_objects(props)
     valid_objects = [obj for obj in objects if obj is not None]
@@ -3531,8 +3531,7 @@ def export_game_engine_animation_tracks(scene, props):
     
     # Track dictionary
     track_data = {
-        "$schema": "https://rockstar-pipeline.studio/schemas/anim-track-v1.json",
-        "generator": "Golden Hawks Studio Tools v3.5.1 (Rockstar Games Spec)",
+        "generator": "Golden Hawks Studio Tools v3.5.2",
         "target_engine": props.game_engine_target,
         "metadata": {
             "fps": fps,
@@ -3668,10 +3667,10 @@ class GOLDEN_HAWKS_OT_toggle_motion_trajectories(bpy.types.Operator):
 
 
 class GOLDEN_HAWKS_OT_export_game_engine_anim(bpy.types.Operator):
-    """Export AAA Game Engine Animation Tracks (Quaternions, Velocities, Events)"""
+    """Export Game Engine Animation Tracks (Quaternions, Velocities, Events)"""
     bl_idname = "golden_hawks.export_game_engine_anim"
     bl_label = "Export Game Engine Tracks (.json)"
-    bl_description = "Exports per-frame Quaternions, Euler angles, velocity vectors, and event markers for Rockstar RAGE / Unreal / glTF runtimes"
+    bl_description = "Exports per-frame Quaternions, Euler angles, velocity vectors, and event markers for game engine runtimes"
     bl_options = {'REGISTER'}
 
     def execute(self, context):
@@ -3699,8 +3698,8 @@ class GOLDEN_HAWKS_OT_export_telemetry(bpy.types.Operator):
         props = (getattr(scene, "golden_hawks_shuffle", None) or getattr(scene, "wolfpack_shuffle", None))
         
         benchmark_data = {
-            "studio": "Golden Hawks Athletics / Rockstar Spec Studio Tools",
-            "version": "3.5.1",
+            "studio": "Golden Hawks Athletics / Studio Tools",
+            "version": "3.5.2",
             "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
             "system_metrics": {
                 "bake_duration_ms": round(props.last_bake_ms, 2),
@@ -3917,14 +3916,14 @@ class GOLDEN_HAWKS_PT_sidebar_panel(bpy.types.Panel):
         row_title.label(text="GOLDEN HAWKS ⚡ HELMET SHUFFLE", icon='SOLO_ON')
         
         row_sub = col_b.row(align=True)
-        row_sub.label(text="v3.5.1 • Laurier Athletics Game-Day Interactive", icon='PREFERENCES')
+        row_sub.label(text="v3.5.2 • Laurier Athletics Game-Day Interactive", icon='PREFERENCES')
         
         # Status Pill Bar
         row_pills = box_brand.row(align=True)
         row_pills.alignment = 'EXPAND'
         row_pills.label(text="60 FPS", icon='RADIOBUT_ON')
         row_pills.label(text="PRORES 422", icon='RADIOBUT_ON')
-        row_pills.label(text="RAGE READY", icon='RADIOBUT_ON')
+        row_pills.label(text="ENGINE TRACKS", icon='RADIOBUT_ON')
         row_pills.label(text="0 LEAKS", icon='CHECKMARK')
 
         # ====================================================================
@@ -4124,11 +4123,11 @@ class GOLDEN_HAWKS_PT_sidebar_panel(bpy.types.Panel):
             box_cue.operator("golden_hawks.export_cue_sheet", text="Export Cue Sheet (.json & .csv)", icon='EXPORT')
 
         # ====================================================================
-        # STAGE 5: STUDIO & TOOLS (ROCKSTAR GAMES SPEC)
+        # STAGE 5: STUDIO & TOOLS
         # ====================================================================
         if props.ui_tab in {'ALL', 'TOOLS'}:
             box_stage5 = layout.box()
-            box_stage5.label(text="5. Studio & Tools (Rockstar Spec)", icon='CONSOLE')
+            box_stage5.label(text="5. Studio & Tools", icon='CONSOLE')
 
             # Telemetry & Profiler HUD (Two-Column Instrument Cluster)
             box_prof = box_stage5.box()
@@ -4152,7 +4151,7 @@ class GOLDEN_HAWKS_PT_sidebar_panel(bpy.types.Panel):
             box_traj.prop(props, "show_motion_trajectories", text="Auto-Update Viewport Trajectories")
             box_traj.operator("golden_hawks.toggle_motion_trajectories", text="Bake / Refresh 3D Motion Arcs", icon='ANIM_DATA')
 
-            # AAA Game Engine Runtime Exporter
+            # Game Engine Runtime Exporter
             box_eng = box_stage5.box()
             box_eng.label(text="Game Engine Runtime Track Exporter", icon='SCENE')
             box_eng.prop(props, "game_engine_target", text="Target Schema")

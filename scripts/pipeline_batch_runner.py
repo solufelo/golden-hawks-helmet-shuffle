@@ -1,8 +1,8 @@
 """
-Laurier Golden Hawks & Rockstar Games Spec - Headless Studio Pipeline Batch Runner
+Laurier Golden Hawks - Headless Studio Pipeline Batch Runner
 ===================================================================================
 Author: Solomon Olufelo (Tools & Pipeline Developer)
-Version: 3.5.1 (AAA Studio Spec)
+Version: 3.5.2
 
 Usage:
   blender.exe -b --python pipeline_batch_runner.py -- [OPTIONS]
@@ -37,7 +37,7 @@ def parse_arguments():
     parser.add_argument("--preset", type=str, default="NIGHT_GAME_FLOODLIGHT", choices=["NIGHT_GAME_FLOODLIGHT", "GOLDEN_HOUR", "CYBER_STADIUM_NEON", "CHAMPIONSHIP_GOLD"], help="Lighting mood preset")
     parser.add_argument("--outcome", type=str, default="SLOT_1", choices=["RANDOM", "SLOT_1", "SLOT_2", "SLOT_3"], help="Target winning slot")
     parser.add_argument("--bumper", action="store_true", default=True, help="Prepend Home Show 3D Bumper")
-    parser.add_argument("--export-tracks", action="store_true", default=True, help="Export AAA Game Engine Animation Tracks (.json)")
+    parser.add_argument("--export-tracks", action="store_true", default=True, help="Export Game Engine Animation Tracks (.json)")
     parser.add_argument("--benchmark", action="store_true", default=True, help="Export Telemetry Benchmark (.json)")
     parser.add_argument("--output-dir", type=str, default=os.getcwd(), help="Output directory for exported assets")
 
@@ -46,9 +46,9 @@ def parse_arguments():
 
 def run_pipeline(args):
     print("=" * 70)
-    print("  GOLDEN HAWKS HELMET SHUFFLE AAA STUDIO PIPELINE RUNNER")
-    print("  Wilfrid Laurier Athletics Production & Rockstar Games Tools Spec")
-    print("  Version: 3.5.1 | Headless Batch Automation")
+    print("  GOLDEN HAWKS HELMET SHUFFLE STUDIO PIPELINE RUNNER")
+    print("  Wilfrid Laurier Athletics Production")
+    print("  Version: 3.5.2 | Headless Batch Automation")
     print("=" * 70)
 
     # 1. Enable Addon if needed
@@ -119,7 +119,7 @@ def run_pipeline(args):
 
     # 5. Export Game Engine Animation Tracks
     if args.export_tracks:
-        print("[PIPELINE] Exporting AAA Game Engine Animation Tracks (Quaternions, Velocities, Events)...")
+        print("[PIPELINE] Exporting Game Engine Animation Tracks (Quaternions, Velocities, Events)...")
         res_exp = bpy.ops.golden_hawks.export_game_engine_anim()
         if 'FINISHED' in res_exp:
             track_file = os.path.join(args.output_dir, "golden_hawks_anim_tracks.json")
