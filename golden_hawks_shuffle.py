@@ -1,7 +1,7 @@
 bl_info = {
     "name": "Golden Hawks Helmet Shuffle",
     "author": "Solomon Olufelo / Laurier Athletics",
-    "version": (3, 5, 0),
+    "version": (3, 5, 1),
     "blender": (4, 0, 0),
     "location": "View3D > Sidebar > Golden Hawks",
     "description": "Laurier Golden Hawks Game-Day Helmet Shuffle & AAA Motion Graphics Suite (Interactive Videoboard Shell Game, Broadcast Sandwich Framing, Volumetric Atmosphere, ProRes 422 HQ)",
@@ -1272,7 +1272,7 @@ def export_broadcast_cue_sheet(plan, props, winning_item_id: int, total_frames: 
     # Write JSON
     json_path = filepath_base + ".json"
     data = {
-        "suite": "Golden Hawks Helmet Shuffle v3.5.0",
+        "suite": "Golden Hawks Helmet Shuffle v3.5.1",
         "author": "Solomon Olufelo / Wilfrid Laurier Athletics",
         "client": "Wilfrid Laurier Golden Hawks",
         "fps": fps,
@@ -3532,7 +3532,7 @@ def export_game_engine_animation_tracks(scene, props):
     # Track dictionary
     track_data = {
         "$schema": "https://rockstar-pipeline.studio/schemas/anim-track-v1.json",
-        "generator": "Golden Hawks Studio Tools v3.5.0 (Rockstar Games Spec)",
+        "generator": "Golden Hawks Studio Tools v3.5.1 (Rockstar Games Spec)",
         "target_engine": props.game_engine_target,
         "metadata": {
             "fps": fps,
@@ -3700,7 +3700,7 @@ class GOLDEN_HAWKS_OT_export_telemetry(bpy.types.Operator):
         
         benchmark_data = {
             "studio": "Golden Hawks Athletics / Rockstar Spec Studio Tools",
-            "version": "3.5.0",
+            "version": "3.5.1",
             "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
             "system_metrics": {
                 "bake_duration_ms": round(props.last_bake_ms, 2),
@@ -3917,7 +3917,7 @@ class GOLDEN_HAWKS_PT_sidebar_panel(bpy.types.Panel):
         row_title.label(text="GOLDEN HAWKS ⚡ HELMET SHUFFLE", icon='SOLO_ON')
         
         row_sub = col_b.row(align=True)
-        row_sub.label(text="v3.5.0 • Laurier Athletics Game-Day Interactive", icon='PREFERENCES')
+        row_sub.label(text="v3.5.1 • Laurier Athletics Game-Day Interactive", icon='PREFERENCES')
         
         # Status Pill Bar
         row_pills = box_brand.row(align=True)

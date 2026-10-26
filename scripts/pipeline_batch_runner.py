@@ -2,7 +2,7 @@
 Laurier Golden Hawks & Rockstar Games Spec - Headless Studio Pipeline Batch Runner
 ===================================================================================
 Author: Solomon Olufelo (Tools & Pipeline Developer)
-Version: 3.5.0 (AAA Studio Spec)
+Version: 3.5.1 (AAA Studio Spec)
 
 Usage:
   blender.exe -b --python pipeline_batch_runner.py -- [OPTIONS]
@@ -48,7 +48,7 @@ def run_pipeline(args):
     print("=" * 70)
     print("  GOLDEN HAWKS HELMET SHUFFLE AAA STUDIO PIPELINE RUNNER")
     print("  Wilfrid Laurier Athletics Production & Rockstar Games Tools Spec")
-    print("  Version: 3.5.0 | Headless Batch Automation")
+    print("  Version: 3.5.1 | Headless Batch Automation")
     print("=" * 70)
 
     # 1. Enable Addon if needed

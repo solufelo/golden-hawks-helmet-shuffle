@@ -1,5 +1,5 @@
 """
-Golden Hawks Helmet Shuffle (v3.5.0) - Automated Verification Test Suite
+Golden Hawks Helmet Shuffle (v3.5.1) - Automated Verification Test Suite
 ========================================================================
 Author: Solomon Olufelo (Tools & Pipeline Developer)
 Target: Wilfrid Laurier University Athletics & AAA Game Studio Spec (Rockstar Games)
@@ -16,7 +16,7 @@ import time
 
 def run_suite():
     print("=" * 75)
-    print("  GOLDEN HAWKS HELMET SHUFFLE v3.5.0 - AUTOMATED VERIFICATION TEST SUITE")
+    print("  GOLDEN HAWKS HELMET SHUFFLE v3.5.1 - AUTOMATED VERIFICATION TEST SUITE")
     print("  Wilfrid Laurier Athletics Production & AAA Studio Spec (Rockstar Games)")
     print("=" * 75)
 

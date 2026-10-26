@@ -2,6 +2,15 @@
 
 All notable changes to the Laurier Football Shell Game Blender addon will be documented in this file.
 
+## [3.5.1] - 2026-10-26
+
+### Fixed
+- Exporting the cue sheet from an unsaved scene wrote to a folder that only existed on one PC. It now writes next to the saved .blend, or to the current folder, like the other exports. All 12 headless checks pass on a fresh Blender 5.2.
+
+### Changed
+- README and project page rebuilt from verified facts, with the delivered clip.
+- Release zip rebuilt as `laurier_golden_hawks_shuffle_v3.5.1.zip`, with the same layout as 3.5.0 (the add-on at the root and again in `golden_hawks_shuffle/`).
+
 ## [3.5.0] - 2026-09-08
 
 ### 🎸 Rockstar Games Tools Engineering Suite & Telemetry Profiler
