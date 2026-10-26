@@ -1179,13 +1179,9 @@ def export_broadcast_cue_sheet(plan, props, winning_item_id: int, total_frames: 
     recording every swap, pause, and reveal timecode for sound designers and After Effects artists.
     """
     if not filepath_base:
-        if bpy.data.filepath:
-            folder = os.path.dirname(bpy.data.filepath)
-            filepath_base = os.path.join(folder, "golden_hawks_shuffle_cues")
-        else:
-            folder = r"C:\Users\Administrator\.gemini\antigravity\scratch\golden-hawks-helmet-shuffle"
-            os.makedirs(folder, exist_ok=True)
-            filepath_base = os.path.join(folder, "golden_hawks_shuffle_cues")
+        # Next to the saved .blend, else the current folder, like the other exports (the test suite looks there).
+        folder = os.path.dirname(bpy.data.filepath) if bpy.data.filepath else os.getcwd()
+        filepath_base = os.path.join(folder, "golden_hawks_shuffle_cues")
             
     fps = props.fps
     winning_slot_idx = plan.item_slot[winning_item_id]
